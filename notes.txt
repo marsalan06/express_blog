@@ -1,0 +1,38 @@
+npm init,
+create index.js
+create a folder 'static' to contain all css,js, images
+create a folder 'templates' to contain all html
+create a folder 'routes' to contain all extra routes to avoid clutter on index.js
+create index.html in templates,
+created '/' route to serve index.html in routes/blog.js
+install nodemon as a dev dependency using 'npm install -D nodemon'
+
+so the flow is,
+
+index.js --> routes/blog.js --> '/' path hit --> templates/index.html
+
+we need a templating engine in express like jinja and mako in django, so 
+we are using express handlebars, handlebars is a java script templating engine
+while express handlebars is an npm package for express, we need a views folder to use this,
+our templates folder can be renamed as views, and it will have subfolder "layouts",
+the structure will be views--> layouts --> main.handlebars,
+so create a file main.handlebars in the layouts folder,
+
+in the index.js,
+const exphbs = require('express-handlebars'); //require express-handlebarss
+app.engine('handlebars',exphbs()); //define the handlebar engine
+app.set('view engine','handlebars'); //set it as view engine
+
+create a home.handlebars in the views folder and in blog.js (/) function, 
+
+router.get('/',(req,res)=>{
+    res.render('home')
+
+})
+this will create main.handlebar as the base template and home.handlebars will be placed in between,
+to play with objects and itreative methods we have built in helpers of express-handlerbars, we are using 
+'each' in bloghome.html, for each indiviual blog we passed the blog as an seprate entity.
+
+Deployment
+
+
